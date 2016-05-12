@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Tips And Snippets</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;php&quot;,&quot;blade&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="blade">blade</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Powered by Slate</a></li>
+            <li><a href='http://www.sitepoint.com/writing-api-documentation-slate/'>Follow the Slate tutorial</a></li>
+            <li><a href="https://github.com/tripit/slate/wiki/Markdown-Syntax">Markdown syntax</a></li>
+            <li><br/></li>
+            <li><code>bundle exec middleman server</code> <br/> to run slate dev at http://localhost:4567/</li>
+            <li><br/></li>
+            <li><code>bundle exec middleman build</code> <br/>to publish files</li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>A list of handy and useful Laravel tips and snippets, that can be used on your day-to-day development tasks.</p>
+
+          <h1 id="homestead">Homestead</h1>
+
+<p>In a nutshell, Homestead is an official, pre-packaged Vagrant “box” that provides you a 
+wonderful development environment without requiring you to install PHP, a web server, 
+and any other server software on your local machine.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<pre class="highlight php"><code>vagrant box add laravel/homestead
+</code></pre>
+
+<p>Download and install the following prerequisites: <a href='https://www.virtualbox.org/wiki/Downloads'>virtualbox</a> 
+and <a href='https://www.vagrantup.com/downloads.html'>vagrant</a> </p>
+
+<p>Once installed, add the laravel vagrant box by running in the terminal</p>
+
+<p><code class="prettyprint">vagrant box add laravel/homestead</code></p>
+
+<h2 id="installation">Installation</h2>
+<pre class="highlight php"><code>cd ~
+git clone https://github.com/laravel/homestead.git Homestead
+//go to your Homestead directory
+cd Homestead
+bash init.sh
+</code></pre>
+
+<p>Clone the repository into a Homestead folder within your &ldquo;home&rdquo; directory, as the Homestead box will serve as the host to all of your Laravel projects::</p>
+
+<p><code class="prettyprint">cd ~</code></p>
+
+<p><code class="prettyprint">git clone https://github.com/laravel/homestead.git Homestead</code></p>
+
+<p>Once installed, run from the <b>Homestead directory</b> the following command:</p>
+
+<p><code class="prettyprint">bash init.sh</code></p>
+
+<aside class="notice">
+This will create the Homestead.yaml configuration file in your ~/.homestead
+</aside>
+
+<h2 id="configuration">Configuration</h2>
+
+<blockquote>
+<p>Homestead.yaml sample (located in ~/.homestead/)</p>
+</blockquote>
+<pre class="highlight php"><code>ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: /Users/Elie/Desktop/Code
+      to: /home/vagrant/Code
+
+sites:
+    - map: homestead.app
+      to: /home/vagrant/Code/test
+
+    - map: phpmyadmin.app
+      to: /home/vagrant/Code/phpmyadmin
+
+databases:
+    - homestead
+</code></pre>
+
+<p>A configuration sample of the Homestead.yaml file.
+Last thing to do is, to edit the hosts file to add your sites hometead.app and phpmyadmin.app </p>
+
+<p><code class="prettyprint">vi /etc/hosts</code> </p>
+
+<p>save it and run <code class="prettyprint">vagrant up</code> from the Homestad directory.</p>
+
+<aside class="notice">
+Every time you edit the Homestead.yaml, make sure to run <br/>
+`vagrant reload &ndash;provision`
+</aside>
+
+<aside class="success">
+phpmyadmin on homestead credentials <br/>
+`homestead secret`
+</aside>
+
+          <h1 id="eloquent-model-observers">Eloquent Model Observers</h1>
+
+<p>To fire another functionality after the model is created or saved, observers class pop as a solution.</p>
+
+<h2 id="observer-class">Observer Class</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Log</span><span class="p">;</span> <span class="c1">//logs will be found in storage/logs/ directory
+</span>
+<span class="k">class</span> <span class="nc">MealObserver</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">created</span><span class="p">(</span><span class="nv">$meal</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'Meal Created'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">saved</span><span class="p">(</span><span class="nv">$meal</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">'Meal Saved'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>In this example, we are considering that we have a Meal model.
+Artisan doesn&rsquo;t offer a generate options for the observers. Manually create a class as follows:</p>
+
+<h2 id="service-provider">Service Provider</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+
+<span class="c1">//...
+</span><span class="k">use</span> <span class="nx">App\MealObserver</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\Meal</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MealServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nx">Meal</span><span class="o">::</span><span class="na">Observe</span><span class="p">(</span> <span class="k">new</span> <span class="nx">MealObserver</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//...
+</span><span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>Create a service provider that will observe the model in its boot method.</p>
+
+<p><code class="prettyprint">php artisan make:provider MealServiceProvider</code></p>
+
+<p>Hook up the new service provider created to your application. 
+In <b>config/app.php</b> add the class to the providers array</p>
+
+<p><code class="prettyprint">App\Providers\MealServiceProvider::class</code></p>
+
+          <h1 id="pivot-models">Pivot Models</h1>
+
+<p>working with many-to-many relations requires the presence of an intermediate table. 
+Eloquent provides some very helpful ways of interacting with this table. 
+Let&rsquo;s assume our User object has many Meals objects that it is related to. </p>
+
+<h2 id="schema">Schema</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> 
+
+ <span class="c1">//...
+</span>
+ <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span>
+ <span class="p">{</span>
+    <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">'meal_user'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">'id'</span><span class="p">);</span>
+        <span class="c1">//foreign keys
+</span>        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">'user_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">refrences</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">onDelete</span><span class="p">(</span><span class="s1">'cascade'</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">'meal_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">();</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">'meal_id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">refrences</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">'meals'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">onDelete</span><span class="p">(</span><span class="s1">'cascade'</span><span class="p">);</span>
+
+        <span class="c1">//other columns 
+</span>        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timesteamp</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">);</span>
+        <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">'is_allowed'</span><span class="p">);</span>
+
+        <span class="c1">//In case the foreign key needs to be unique
+</span>        <span class="c1">// $table-&gt;unique(['user_id', 'meal_id']);
+</span>    <span class="p">});</span>
+ <span class="p">}</span>
+
+ <span class="c1">//...
+</span></code></pre>
+
+<p>Generate a migration with artisan. By convention, the table names are sorted alphbetically.
+In our example it will be create_meal_user_table (meal comes before user).</p>
+
+<p><code class="prettyprint">php artisan make:migration create_meal_user_table --create-meal_user</code></p>
+
+<h2 id="models-relations">Models relations</h2>
+
+<blockquote>
+<p>Meal Model</p>
+</blockquote>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">//...
+</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">users</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsToMany</span><span class="p">(</span><span class="s1">'App\Models\User'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>User Model</p>
+</blockquote>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">//...
+</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">meals</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsToMany</span><span class="p">(</span><span class="s1">'App\Models\Meal'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withPivot</span><span class="p">(</span><span class="s1">'created_at'</span><span class="p">,</span> <span class="s1">'is_allowed'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>You can access the pivot table with the <code class="prettyprint">belongsToMany()</code> relation.</p>
+
+<p>If your pivot table contains extra attributes, you must specify them when defining the relationship using <code class="prettyprint">withPivot()</code></p>
+
+<h2 id="retrieving-values">Retrieving Values</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$meals</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">meals</span><span class="p">;</span>
+    <span class="k">foreach</span><span class="p">(</span><span class="nv">$meals</span> <span class="k">as</span> <span class="nv">$meal</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$meal</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span> <span class="c1">//meal table
+</span>        <span class="k">echo</span> <span class="nv">$meal</span><span class="o">-&gt;</span><span class="na">pivot</span><span class="o">-&gt;</span><span class="na">created_at</span><span class="p">;</span> <span class="c1">//pivot table
+</span>        <span class="k">echo</span> <span class="nv">$meal</span><span class="o">-&gt;</span><span class="na">pivot</span><span class="o">-&gt;</span><span class="na">is_allowed</span><span class="p">;</span> <span class="c1">//pivot table
+</span>
+    <span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>In this example, we will get a user&rsquo;s meals and their created_at and is_allowed from the pivot table.</p>
+
+<h2 id="chaining">Chaining</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$user_meals</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">meals</span><span class="p">()</span>
+                     <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span> <span class="nx">DB</span><span class="o">::</span><span class="na">raw</span><span class="p">(</span><span class="s1">'DATE(metric_user.created_at)'</span><span class="p">),</span> <span class="s1">'='</span><span class="p">,</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">))</span>
+                     <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span> <span class="s1">'is_allowed'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                     <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>To apply further eloquent methods on the collection, use the method <code class="prettyprint">-&gt;meals()</code> instead of <code class="prettyprint">-&gt;meals</code>.</p>
+
+<p>In this example we will get the meals that were created today.</p>
+
+          <h1 id="events-and-listeners">Events And Listeners</h1>
+
+<p>Laravel allows out of the box to subscribe and listen for events in your application. Event classes are typically stored in the <code class="prettyprint">app/Events</code> directory, while their listeners are stored in <code class="prettyprint">app/Listeners</code>.</p>
+
+<h2 id="event">Event</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Events</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Events\Event</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Queue\SerializesModels</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Broadcasting\ShouldBroadcast</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserHadMeal</span> <span class="k">extends</span> <span class="nx">Event</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">SerializesModels</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nv">$meal</span><span class="p">,</span> <span class="nv">$user</span><span class="p">;</span>
+
+    <span class="sd">/**
+     * Create a new event instance.
+     *
+     * @return void
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$meal</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nv">$user</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">meal</span> <span class="o">=</span> <span class="nv">$meal</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**
+     * Get the channels the event should be broadcast on.
+     *
+     * @return array
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">broadcastOn</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<p>We will continue with the user/meal models. We will generate an event after the user have the meal, to send him and email or do something else on the models.</p>
+
+<p><code class="prettyprint">php artisan make:event UserHadMeal</code></p>
+
+<p>All we need to do is pass the parameters to the <code class="prettyprint">__construct()</code> method. </p>
+
+<h2 id="listener">Listener</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Listeners</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Events\UserHadMeal</span><span class="p">;</span> 
+<span class="k">use</span> <span class="nx">Illuminate\Queue\InteractsWithQueue</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Queue\ShouldQueue</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">SendEmailMeal</span>
+<span class="p">{</span>
+    <span class="sd">/**
+     * Create the event listener.
+     *
+     * @return void
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">//
+</span>    <span class="p">}</span>
+
+    <span class="sd">/**
+     * Handle the event.
+     *
+     * @param  UserHadMeal  $event
+     * @return void
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">UserHadMeal</span> <span class="nv">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">;</span>
+        <span class="nv">$meal</span> <span class="o">=</span> <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">meal</span><span class="p">;</span>
+
+        <span class="c1">// Mail( $user had meal $meal-&gt;name); or anything else you need to do
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The listener is what will the event do once it is fired. Generate the listener with artisan as follows.</p>
+
+<p><code class="prettyprint">php artisan make:listener SendEmailMeal --event=UserHadMeal</code></p>
+
+<p>Everything you need to do is inside the <code class="prettyprint">handle()</code> function of the listener class.</p>
+
+<h2 id="event-service-provider">Event Service Provider</h2>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * The event listener mappings for the application.
+ *
+ * @var array
+ */</span>
+<span class="k">protected</span> <span class="nv">$listen</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'App\Events\UserHadMeal'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'App\Listeners\SendEmailMeal'</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<p>To Register the event and map its listener(s), you add it to the <code class="prettyprint">EventServiceProvider</code> included with your Laravel application.</p>
+
+<h2 id="firing-the-event">Firing the event</h2>
+
+<p>Fire the event inside your controller method like so: </p>
+
+<p><code class="prettyprint">Event::fire(new UserHadMeal($user, $meal));</code></p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="blade">blade</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
